@@ -33,7 +33,7 @@ void run_case() {
         cin >> en_he[i];
         ll temp = (en_he[i] + atc - 1) / atc;
         sum += temp * en_atc[i];   
-    }
+    } 
     for(int i = 0 ; i < en ; i++) {
         if(he > sum - en_atc[i]) {
             cout << "YES\n";
