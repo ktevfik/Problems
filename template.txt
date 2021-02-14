@@ -18,10 +18,14 @@ _|"""""|_|"""""|_|"""""|_| """"|_| """ |_|"""""|_|"""""|
 #include <set>
 #include <list>
 
+typedef long long int ll;
+
 #define all(x) x.begin(),x.end()
 #define pb push_back
-
-typedef long long int ll;
+#define vi vector<int>
+#define vll vector<ll>
+#define vs vector<string>
+#define vc vector<char>
 
 using namespace std;
 
