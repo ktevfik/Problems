@@ -17,9 +17,6 @@ _|"""""|_|"""""|_|"""""|_| """"|_| """ |_|"""""|_|"""""|
 #include <map>
 #include <set>
 #include <list>
-#include <chrono>
-#include <array>
-#include <random>
 
 typedef long long int ll;
 
@@ -37,13 +34,17 @@ void run_case() {
     cin >> n;
     vi a;
     for(int i = 0;i < n;i++) {
-        int t;
-        cin >> t;
-        a.pb(t);
+        int o;
+        cin >> o;
+        a.pb(o);
     }
-    sort(all(a),greater<int>());
-    for(auto i : a) cout << i << " ";
-    cout << endl;
+    sort(all(a));
+    vi b;
+    for(int i = 0;i < n-1;i++) {
+        b.pb(abs((max(a[i],a[i+1]))- min(a[i],a[i+1])));
+    }
+    sort(all(b));
+    cout << b.front() << endl;
 }
 
 int main() {

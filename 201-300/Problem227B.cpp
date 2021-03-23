@@ -17,9 +17,6 @@ _|"""""|_|"""""|_|"""""|_| """"|_| """ |_|"""""|_|"""""|
 #include <map>
 #include <set>
 #include <list>
-#include <chrono>
-#include <array>
-#include <random>
 
 typedef long long int ll;
 
@@ -32,26 +29,22 @@ typedef long long int ll;
 
 using namespace std;
 
-void run_case() {
-    int n;
-    cin >> n;
-    vi a;
-    for(int i = 0;i < n;i++) {
-        int t;
-        cin >> t;
-        a.pb(t);
-    }
-    sort(all(a),greater<int>());
-    for(auto i : a) cout << i << " ";
-    cout << endl;
-}
-
 int main() {
     ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-    int tests;
-    cin >> tests;
-    while(tests != 0) {
-        run_case();
-        tests--;
+    ll n,k;
+    cin >> n;
+    ll maxn = 100001;
+    ll a[maxn];
+    for(int i = 1;i <= n;i++) {
+        cin >> k;
+        a[k] = i;
     }
+    ll m,y,vasya = 0,petya = 0;
+    cin >> m;
+    for(int i = m;i >= 1;i--) {
+        cin >> y;
+        vasya += a[y];
+        petya += (n+1 - a[y]);
+    }
+    cout << vasya << " " << petya << endl;
 }
