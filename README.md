@@ -1,2 +1,3 @@
-# CodeForces
-code forces problem solutions by me
+# Problems
+
+Different problems which i solved from different problem solving websites.
