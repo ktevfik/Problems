@@ -310,4 +310,212 @@ public class Solutions {
     }
 
     // -------- 06.08.2021 ----------
+
+    boolean areSimilar(int[] a, int[] b) {
+        int n = a.length;
+        int differences = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (a[i] != b[i])
+                differences++;
+        }
+
+        if (differences == 0)
+            return true;
+
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        boolean same = Arrays.equals(a, b);
+
+        return (differences <= 2) && same;
+    }
+
+    int arrayChange(int[] inputArray) {
+        int i = 0;
+        int count = 0;
+        while (i < inputArray.length - 1) {
+            if (inputArray[i] >= inputArray[i + 1]) {
+                int temp = inputArray[i + 1];
+                inputArray[i + 1] = inputArray[i] + 1;
+                count += inputArray[i + 1] - temp;
+            }
+            i++;
+        }
+        return count;
+    }
+
+    boolean palindromeRearranging(String inputString) {
+        int[] ht = new int[26];
+        for (int i = 0; i < inputString.length(); i++) {
+            ht[inputString.charAt(i) - 97]++;
+        }
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            if (ht[i] % 2 == 1)
+                count++;
+            if (count > 1)
+                return false;
+        }
+        return true;
+    }
+
+    boolean reachNextLevel(int experience, int threshold, int reward) {
+        return experience + reward >= threshold;
+    }
+
+    int knapsackLight(int value1, int weight1, int value2, int weight2, int maxW) {
+        return ((weight1 + weight2 <= maxW) ? (value1 + value2)
+                : ((weight1 > maxW) ? ((weight2 > maxW) ? (0) : (value2))
+                        : ((weight2 > maxW) ? (value1) : ((value1 > value2) ? (value1) : (value2)))));
+    }
+
+    boolean areEquallyStrong(int yourLeft, int yourRight, int friendsLeft, int friendsRight) {
+        int yourStronger;
+        int yourWeaker;
+        if (yourLeft > yourRight) {
+            yourStronger = yourLeft;
+            yourWeaker = yourRight;
+        } else {
+            yourStronger = yourRight;
+            yourWeaker = yourLeft;
+        }
+        int friendsStronger;
+        int friendsWeaker;
+        if (friendsLeft > friendsRight) {
+            friendsStronger = friendsLeft;
+            friendsWeaker = friendsRight;
+        } else {
+            friendsStronger = friendsRight;
+            friendsWeaker = friendsLeft;
+        }
+
+        return yourStronger == friendsStronger && yourWeaker == friendsWeaker;
+    }
+
+    int arrayMaximalAdjacentDifference(int[] inputArray) {
+        int diff = Integer.MIN_VALUE;
+        for (int i = 0; i < inputArray.length - 1; i++) {
+            if (Math.abs(inputArray[i] - inputArray[i + 1]) > diff)
+                diff = Math.abs(inputArray[i] - inputArray[i + 1]);
+        }
+        return diff;
+    }
+
+    boolean isIPv4Address(String inputString) {
+        String PATTERN = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
+
+        return inputString.matches(PATTERN);
+    }
+
+    int avoidObstacles(int[] inputArray) {
+        int k = 0;
+        for (int i = 1;; i++) {
+            int count = 0;
+            for (int j = 0; j < inputArray.length; j++) {
+                if (inputArray[j] % i != 0) {
+                    count++;
+                }
+            }
+            if (count == inputArray.length) {
+                k = i;
+                break;
+            }
+        }
+        return k;
+    }
+
+    int[][] boxBlur(int[][] image) {
+        int[][] arr = new int[image.length - 2][image[0].length - 2];
+        for (int i = 0; i < image.length; i++) {
+            int sum = 0;
+            for (int j = 0; j < image[i].length; j++) {
+                if (i + 3 <= image.length && j + 3 <= image[i].length) {
+                    sum = image[i][j] + image[i][j + 1] + image[i][j + 2] + image[i + 1][j] + image[i + 1][j + 1]
+                            + image[i + 1][j + 2] + image[i + 2][j] + image[i + 2][j + 1] + image[i + 2][j + 2];
+                    arr[i][j] = sum / 9;
+                }
+            }
+        }
+        return arr;
+    }
+
+    int[][] minesweeper(boolean[][] matrix) {
+        int result[][] = new int[matrix.length][matrix[0].length];
+        int count = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (j != matrix[i].length - 1 && matrix[i][j + 1])
+                    count++;
+                if (i != matrix.length - 1 && matrix[i + 1][j])
+                    count++;
+                if (j != 0 && matrix[i][j - 1])
+                    count++;
+                if (i != 0 && matrix[i - 1][j])
+                    count++;
+                if (i != matrix.length - 1 && j != matrix[0].length - 1 && matrix[i + 1][j + 1])
+                    count++;
+                if (i != 0 && j != 0 && matrix[i - 1][j - 1])
+                    count++;
+                if (i != 0 && j != matrix[i].length - 1 && matrix[i - 1][j + 1])
+                    count++;
+                if (j != 0 && i != matrix.length - 1 && matrix[i + 1][j - 1])
+                    count++;
+                result[i][j] = count;
+                count = 0;
+            }
+        }
+
+        return result;
+    }
+
+    int[] arrayReplace(int[] inputArray, int elemToReplace, int substitutionElem) {
+        for (int i = 0; i < inputArray.length; i++) {
+            if (inputArray[i] == elemToReplace)
+                inputArray[i] = substitutionElem;
+        }
+        return inputArray;
+    }
+
+    boolean evenDigitsOnly(int n) {
+        while (n > 0) {
+            if ((n % 10) % 2 == 1)
+                return false;
+            n /= 10;
+        }
+        return true;
+    }
+
+    boolean variableName(String name) {
+        return name.matches("^[_a-zA-Z][a-zA-Z_$0-9]*");
+    }
+
+    String alphabeticShift(String inputString) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < inputString.length(); i++) {
+            if (inputString.charAt(i) == 'z')
+                sb.append('a');
+            else {
+                char x = inputString.charAt(i);
+                x += 1;
+                sb.append(x);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    boolean chessBoardCellColor(String cell1, String cell2) {
+        int cell1_pos = 0, cell2_pos = 0;
+        for (char c : cell1.toCharArray()) {
+            cell1_pos += c;
+        }
+
+        for (char c : cell2.toCharArray()) {
+            cell2_pos += c;
+        }
+
+        return ((cell1_pos - '0') % 2 == (cell2_pos - '0') % 2);
+    }
+    // -------- 07.08.2021 --------
 }
