@@ -517,5 +517,40 @@ public class Solutions {
 
         return ((cell1_pos - '0') % 2 == (cell2_pos - '0') % 2);
     }
+
     // -------- 07.08.2021 --------
+    int circleOfNumbers2(int n, int firstNumber) {
+        return ((firstNumber + n / 2) >= n ? firstNumber - n / 2 : firstNumber + n / 2 % n);
+    }
+
+    int depositProfit(int deposit, int rate, int threshold) {
+        int years = 0;
+        double current = deposit;
+        while (current < threshold) {
+            current += current * rate / 100.0;
+            ++years;
+        }
+        return years;
+    }
+
+    int absoluteValuesSumMinimization(int[] a) {
+        return (a.length % 2 == 1 ? a[a.length / 2] : a[a.length / 2 - 1]);
+    }
+
+    int extraNumber(int a, int b, int c) {
+        if (a == b)
+            return c;
+        if (b == c)
+            return a;
+        return b;
+    }
+
+    boolean isInfiniteProcess(int a, int b) {
+        return (a > b || (b - a) % 2 == 1 ? true : false);
+    }
+
+    boolean arithmeticExpression(int a, int b, int c) {
+        return a + b == c || a * b == c || a / (double) b == c || a - b == c;
+    }
+
 }
